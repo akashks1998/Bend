@@ -1,7 +1,7 @@
-String/concat = @a @b
+concat = @a @b
   match a {
     String/nil: b;
-    String/cons: (String/cons a.head (String/concat a.tail b))
+    String/cons: (String/cons a.head (concat a.tail b))
   }
 
-main = (String/concat "ab" "cd")
+main = (concat "ab" "cd")

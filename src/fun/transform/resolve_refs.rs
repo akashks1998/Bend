@@ -58,8 +58,10 @@ impl Term {
             }
 
             // If the variable is actually a reference to a function, swap the term.
-            if def_names.contains(nam) {
-              *self = Term::r#ref(nam);
+            // `String.concat` is a legal identifier (`.` is a name character, used
+            // for match fields like `xs.head`), but namespaced defs use `/`.
+            if let Some(def_nam) = resolve_def_name(nam, def_names) {
+              *self = Term::r#ref(&def_nam);
             }
           }
         }
@@ -112,4 +114,21 @@ fn is_var_in_scope<'a>(name: &'a Name, scope: &HashMap<&'a Name, usize>) -> bool
     Some(entry) => *entry == 0,
     None => true,
   }
+}
+
+/// Looks up a free name in the top-level definitions.
+///
+/// If `nam` is not itself a definition, also try replacing `.` with `/` so
+/// that documented names like `String.concat` resolve to `String/concat`.
+fn resolve_def_name(nam: &Name, def_names: &HashSet<Name>) -> Option<Name> {
+  if def_names.contains(nam) {
+    return Some(nam.clone());
+  }
+  if nam.contains('.') {
+    let slashed = Name::new(nam.replace('.', "/"));
+    if def_names.contains(&slashed) {
+      return Some(slashed);
+    }
+  }
+  None
 }

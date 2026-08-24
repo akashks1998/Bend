@@ -1,0 +1,8 @@
+---
+source: tests/golden_tests.rs
+input_file: tests/golden_tests/compile_file/unbound_dotted_name.bend
+---
+[4m[1m[31mErrors:[0m
+[1mIn [4mtests/golden_tests/compile_file/unbound_dotted_name.bend[0m[1m :[0m
+[1mIn definition '[4mmain[0m[1m':[0m
+  Unbound variable 'Foo.bar'. If you meant 'Foo/bar', Bend uses '/' to separate type and function names (e.g. 'String/concat').

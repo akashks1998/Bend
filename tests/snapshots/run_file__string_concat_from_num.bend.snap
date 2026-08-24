@@ -1,0 +1,9 @@
+---
+source: tests/golden_tests.rs
+input_file: tests/golden_tests/run_file/string_concat_from_num.bend
+---
+NumScott:
+("n=42", "x=7")
+
+Scott:
+("n=42", "x=7")
