@@ -76,6 +76,11 @@ String/equals (String/Cons x xs) (String/Cons y ys) =
   }
 String/equals * * = 0
 
+#{ Concatenates two strings. #}
+String/concat (s1: String) (s2: String) : String
+String/concat (String/Cons x xs) ys = (String/Cons x (String/concat xs ys))
+String/concat (String/Nil)       ys = ys
+
 #{ Splits a string into a list of strings based on the given delimiter. #}
 String/split (s: String) (delimiter: u24) : (List String)
 String/split s delim = (String/split.go s delim [""])
@@ -671,6 +676,10 @@ def u24/to_string(n: u24) -> String:
     else:
       return lambda t: go(d, String/Cons(c, t))
   return go(n, String/Nil)
+
+#{ Converts a native u24 number into a String. #}
+def String/from_num(n: u24) -> String:
+  return u24/to_string(n)
 
 #{ String Encoding and Decoding #}
 

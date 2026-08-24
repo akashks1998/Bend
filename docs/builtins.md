@@ -34,6 +34,28 @@ A String literal is surrounded with `"`. Accepts the same values as characters l
 def String/equals (s1: String) (s2: String) : u24
 ```
 
+#### String/concat
+
+```python
+#{
+  Concatenates two strings.
+#}
+String/concat (s1: String) (s2: String) : String
+```
+
+`String.concat` is accepted as a spelling of `String/concat`.
+
+#### String/from_num
+
+```python
+#{
+  Converts a native u24 number into a String.
+#}
+def String/from_num(n: u24) -> String:
+```
+
+Same as `u24/to_string`. `String.from_num` is accepted as a spelling of `String/from_num`.
+
 #### String/split
 
 ```python

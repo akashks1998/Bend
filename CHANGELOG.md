@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project does not currently adhere to a particular versioning scheme.
 
+## [Unreleased]
+
+### Added
+
+- Add `String/concat` and `String/from_num` builtins. ([#754][gh-754])
+
+### Fixed
+
+- Resolve dotted names like `String.concat` to the namespaced form `String/concat`. ([#754][gh-754])
+
 ## [0.2.38] - 2025-02-23
 
 ### Added
@@ -445,3 +455,4 @@ and this project does not currently adhere to a particular versioning scheme.
 [gh-734]: https://github.com/HigherOrderCO/Bend/issues/734
 [gh-736]: https://github.com/HigherOrderCO/Bend/issues/736
 [gh-748]: https://github.com/HigherOrderCO/Bend/issues/748
+[gh-754]: https://github.com/HigherOrderCO/Bend/issues/754

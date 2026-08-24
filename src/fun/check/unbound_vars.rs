@@ -118,6 +118,16 @@ impl std::fmt::Display for UnboundVarErr {
             f,
             "Unbound variable '{var}'. If you wanted to subtract '{pre}' from '{suf}', you must separate it with spaces ('{pre} - {suf}') since '-' is a valid name character."
           )
+        } else if let Some((pre, _)) = var.split_once('.') {
+          if pre.starts_with(|c: char| c.is_ascii_uppercase()) {
+            let slashed = var.replace('.', "/");
+            write!(
+              f,
+              "Unbound variable '{var}'. If you meant '{slashed}', Bend uses '/' to separate type and function names (e.g. 'String/concat')."
+            )
+          } else {
+            write!(f, "Unbound variable '{var}'.")
+          }
         } else {
           write!(f, "Unbound variable '{var}'.")
         }
